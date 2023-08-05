@@ -5,6 +5,6 @@ type ResolveType = (value?: any) => void;
 type RejectType = (value?: any) => void;
 
 // * Promise 回调函数类型
-type PromiseCallbackType = (resolve: ResolveType, reject: RejectType) => void;
+type Executor = (resolve: ResolveType, reject: RejectType) => void;
 
-export { ResolveType, RejectType, PromiseCallbackType };
+export { ResolveType, RejectType, Executor };
