@@ -11,12 +11,12 @@ class MiniPromise<T = any> {
 
     this.resolve = (value: any): any => {
       this.status = "success";
-      console.log("resolve==>value:", value);
+      console.log(value);
     };
 
     this.reject = (value: any): any => {
       this.status = "fail";
-      console.log("reject==>value:", value);
+      console.log(value);
     };
 
     executor(this.resolve, this.reject);
