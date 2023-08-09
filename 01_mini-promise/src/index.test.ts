@@ -12,6 +12,6 @@ describe("01_mini-promise", () => {
     expect(spy).toHaveBeenCalled();
     expect(spy).toHaveBeenCalledTimes(1);
     expect(spy).toHaveBeenCalledWith("success");
-    expect(spy.mock.calls).toContainEqual(["success"]);
+    // expect(spy.mock.calls).toContainEqual(["success"]);
   });
 });
