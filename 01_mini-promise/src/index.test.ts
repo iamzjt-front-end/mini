@@ -14,4 +14,16 @@ describe("01_mini-promise", () => {
     expect(spy).toHaveBeenCalledWith("success");
     // expect(spy.mock.calls).toContainEqual(["success"]);
   });
+
+  it("reject should be called", () => {
+    const spy = vi.spyOn(global.console, "log");
+
+    new MiniPromise((resolve, reject) => {
+      reject("fail");
+    });
+
+    expect(spy).toHaveBeenCalled();
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(spy).toHaveBeenCalledWith("fail");
+  })
 });
