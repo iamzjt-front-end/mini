@@ -25,7 +25,7 @@ describe("01_mini-promise", () => {
     expect(spy).toHaveBeenCalled();
     expect(spy).toHaveBeenCalledTimes(1);
     expect(spy).toHaveBeenCalledWith("fail");
-  })
+  });
 
   it("after resolved, reject should not be called", () => {
     const spy = vi.spyOn(global.console, "log");
@@ -38,7 +38,7 @@ describe("01_mini-promise", () => {
     expect(spy).toHaveBeenCalled();
     expect(spy).toHaveBeenCalledTimes(1);
     expect(spy).toHaveBeenCalledWith("success");
-  })
+  });
 
   it("after rejected, resolve should not be called", () => {
     const spy = vi.spyOn(global.console, "log");
@@ -51,5 +51,25 @@ describe("01_mini-promise", () => {
     expect(spy).toHaveBeenCalled();
     expect(spy).toHaveBeenCalledTimes(1);
     expect(spy).toHaveBeenCalledWith("fail");
-  })
+  });
+
+  it("then resolveRes should be get", () => {
+    const p = new MiniPromise((resolve, reject) => {
+      resolve("success");
+    });
+
+    p.then((resolveRes) => {
+      expect(resolveRes).toBe("success");
+    }, (rejectRes) => {});
+  });
+
+  it("then rejectRes should be get", () => {
+    const p = new MiniPromise((resolve, reject) => {
+      reject("fail");
+    });
+
+    p.then((resolveRes) => {}, (rejectRes) => {
+      expect(rejectRes).toBe("fail");
+    });
+  });
 });
