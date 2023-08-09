@@ -10,13 +10,17 @@ class MiniPromise<T = any> {
     this.status = "pending";
 
     this.resolve = (value: any): any => {
-      this.status = "success";
-      console.log(value);
+      if (this.status === "pending") {
+        this.status = "success";
+        console.log(value);
+      }
     };
 
     this.reject = (value: any): any => {
-      this.status = "fail";
-      console.log(value);
+      if (this.status === "pending") {
+        this.status = "fail";
+        console.log(value);
+      }
     };
 
     executor(this.resolve, this.reject);
