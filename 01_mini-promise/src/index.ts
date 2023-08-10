@@ -15,7 +15,6 @@ class MiniPromise<T = any> {
       if (this.status === "pending") {
         this.status = "success";
         this.resolve_executor_value = value;
-        console.log("success");
       }
     };
 
@@ -23,7 +22,6 @@ class MiniPromise<T = any> {
       if (this.status === "pending") {
         this.status = "fail";
         this.reject_executor_value = value;
-        console.log("fail");
       }
     };
 

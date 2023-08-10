@@ -3,54 +3,37 @@ import MiniPromise from "./index";
 
 describe("01_mini-promise", () => {
   it("resolve should be called", () => {
-    const spy = vi.spyOn(global.console, "log");
-
-    new MiniPromise((resolve, reject) => {
+    const p = new MiniPromise((resolve, reject) => {
       resolve("success");
     });
 
-    expect(spy).toHaveBeenCalled();
-    expect(spy).toHaveBeenCalledTimes(1);
-    expect(spy).toHaveBeenCalledWith("success");
-    // expect(spy.mock.calls).toContainEqual(["success"]);
+    expect(p.status).toBe("success");
   });
 
   it("reject should be called", () => {
-    const spy = vi.spyOn(global.console, "log");
-
-    new MiniPromise((resolve, reject) => {
+    const p = new MiniPromise((resolve, reject) => {
       reject("fail");
     });
 
-    expect(spy).toHaveBeenCalled();
-    expect(spy).toHaveBeenCalledTimes(1);
-    expect(spy).toHaveBeenCalledWith("fail");
+    expect(p.status).toBe("fail");
   });
 
   it("after resolved, reject should not be called", () => {
-    const spy = vi.spyOn(global.console, "log");
-
-    new MiniPromise((resolve, reject) => {
+    const p = new MiniPromise((resolve, reject) => {
       resolve("success");
       reject("fail");
     });
 
-    expect(spy).toHaveBeenCalled();
-    expect(spy).toHaveBeenCalledTimes(1);
-    expect(spy).toHaveBeenCalledWith("success");
+    expect(p.status).toBe("success");
   });
 
   it("after rejected, resolve should not be called", () => {
-    const spy = vi.spyOn(global.console, "log");
-
-    new MiniPromise((resolve, reject) => {
+    const p = new MiniPromise((resolve, reject) => {
       reject("fail");
       resolve("success");
     });
 
-    expect(spy).toHaveBeenCalled();
-    expect(spy).toHaveBeenCalledTimes(1);
-    expect(spy).toHaveBeenCalledWith("fail");
+    expect(p.status).toBe("fail");
   });
 
   it("then resolveRes should be get", () => {
@@ -60,7 +43,8 @@ describe("01_mini-promise", () => {
 
     p.then((resolveRes) => {
       expect(resolveRes).toBe("success");
-    }, (rejectRes) => {});
+    }, (rejectRes) => {
+    });
   });
 
   it("then rejectRes should be get", () => {
@@ -68,7 +52,8 @@ describe("01_mini-promise", () => {
       reject("fail");
     });
 
-    p.then((resolveRes) => {}, (rejectRes) => {
+    p.then((resolveRes) => {
+    }, (rejectRes) => {
       expect(rejectRes).toBe("fail");
     });
   });
