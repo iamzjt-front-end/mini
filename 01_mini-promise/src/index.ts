@@ -25,7 +25,11 @@ class MiniPromise<T = any> {
 			}
 		};
 
-		executor(this.resolve, this.reject);
+		try {
+			executor(this.resolve, this.reject);
+		} catch (err) {
+			this.reject((err as Error).toString());
+		}
 	}
 
 	then(resolveInThen: ResolveType, rejectInThen: RejectType) {

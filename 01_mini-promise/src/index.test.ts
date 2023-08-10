@@ -62,4 +62,12 @@ describe("01_mini-promise", () => {
 			},
 		);
 	});
+
+	it("execute failed should call reject", () => {
+		const p = new MiniPromise((resolve, reject) => {
+			throw new Error("execute failed");
+		});
+
+		expect(p.status).toBe("fail");
+	});
 });
