@@ -12,15 +12,18 @@
 
 ```js
 const promise = new Promise((resolve, reject) => {
-  reject('error')
-  resolve('success')
-})
+	reject("error");
+	resolve("success");
+});
 
-promise.then((res) => {
-  console.log('result: ', res)
-}, (err) => {
-  console.log('result: ', err)
-})
+promise.then(
+	res => {
+		console.log("result: ", res);
+	},
+	err => {
+		console.log("result: ", err);
+	},
+);
 
 // result: error
 ```
